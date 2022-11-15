@@ -453,7 +453,7 @@
     return $s;
   }
 
-  function html_month_range_header ($opts, $lang = '', $klasses = array (), $link = array (), $i1, $i2) {
+  function html_month_range_header ($opts, $i1, $i2, $lang = '', $klasses = array (), $link = array ()) {
 
     array_unshift ($klasses, 'header', 'fit', 'text');
     $s = '<table cellspacing="0" cellpadding="0" class="'.implode(' ', $klasses).'" style="direction: '.dir_($lang).'">';
@@ -1120,7 +1120,7 @@ class IslamicCalendar_Iran extends IslamicCalendar {
     $i2 = $c->i;
     $c->restore ();
     $link = array ('method'=>'select', 'param'=>$id);
-    return $this->cals[$id]->html_month_range_header ($opts, $lang, $klasses, $link, $i1, $i2);
+    return $this->cals[$id]->html_month_range_header ($opts, $i1, $i2, $lang, $klasses, $link);
   }
 
   function html_month_header ($opts, $lang = '', $klasses = array ()) {
