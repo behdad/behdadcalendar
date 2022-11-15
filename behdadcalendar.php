@@ -87,7 +87,7 @@
       'y' => 'year',
       );
 
-  function Calendar () {
+  function __construct () {
     // This constructor should be chained after setting $i.
     $this->synch ();
   }
@@ -209,7 +209,7 @@
   var $base_i;
 
 
-  function SimpleCalendar () {
+  function __construct () {
     $this->y = $this->base_y;
     $this->m = $this->base_m;
     $this->d = $this->base_d;
@@ -220,7 +220,7 @@
     foreach ($this->month_length as $l)
       $this->year_length += $l;
 
-    parent::Calendar ();
+    parent::__construct ();
   }
 
   function is_leap_year () {
@@ -882,7 +882,7 @@ class IslamicCalendar_Iran extends IslamicCalendar {
 
   var $i = 0;
 
-  function MultiCalendar ($variation = '', $calendars = array (), $formals = array ()) {
+  function __construct ($variation = '', $calendars = array (), $formals = array ()) {
     if (!count ($calendars)) {
       $calendars = $this->calendars;
     }
@@ -914,7 +914,7 @@ class IslamicCalendar_Iran extends IslamicCalendar {
         $this->weekend = $this->c->weekend;
     }
 
-    parent::Calendar ();
+    parent::__construct ();
   }
 
   function add_calendar ($calendar, $variation, $formal = true, $fast = false) {
@@ -1062,7 +1062,8 @@ class IslamicCalendar_Iran extends IslamicCalendar {
     $s = '<table cellspacing="0" cellpadding="0" class="fit"><tr>'."\n";
       /* Selected calendar goes on the top row */
       reset ($ss);
-      list ($calnum, $ssitem) = each ($ss);
+      $calnum = key($ss);
+      $ssitem = current($ss);
       array_shift ($ss);
       $this_lang = array_shift ($langs);
       $id = array_shift ($ids);
@@ -1077,7 +1078,8 @@ class IslamicCalendar_Iran extends IslamicCalendar {
       $s .= '<td><table cellspacing="0" cellpadding="0" class="minors fit"><tr>'."\n";
       $i = 1;
       while ($ss) {
-        list ($calnum, $ssitem) = each ($ss);
+        $calnum = key($ss);
+        $ssitem = current($ss);
         array_shift ($ss);
         $this_lang = array_shift ($langs);
 	$id = array_shift ($ids);
